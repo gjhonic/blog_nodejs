@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Главная</title>
+</head>
+<body>
+  <div class="header">
+    <h1>Пост №<%=post.id%></h1>
+    <a class="btn btn-primary btn" href="/me" role="button">На главную</a>
+    <a class="btn btn-success btn" href="/posts" role="button">Все посты</a>
+  </div>
+
+    <div class="box-posts">
+        <div class="jumbotron">
+            <h1 class="display-4"><%= post.title %></h1>
+            <p class="lead"><%= post.text_full %></p>
+            <hr class="my-4">
+            <p>Дата публикации: <%= post.date %></p>
+            <p>Автор:<b> <%= post.author_surname+" "+post.author_name %></b></p>
+        </div>
+    </div>
+
+</body>
+</html>

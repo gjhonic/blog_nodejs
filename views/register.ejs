@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<title>Регистрация</title>
+</head>
+<body>
+	<h1 align="center">Регистрация</h1>
+	<div style='margin: 20px 20%;'>
+		<form method="post" action="/register">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputUsername">Логин</label>
+					<input type="text" class="form-control" id="inputUsername" placeholder="Ваш логин" name='username'>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputPassword4">Пароль</label>
+					<input type="password" class="form-control" id="inputPassword4" placeholder="Задайте пароль" name='password'>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputName">Имя</label>
+				<input type="text" class="form-control" id="inputName" placeholder="Ваше имя" name="name">
+			</div>
+			<div class="form-group">
+				<label for="inputSurname">Фамилия</label>
+				<input type="text" class="form-control" id="inputSurname" placeholder="Ваша фамилия" name='surname'>
+			</div>
+			<button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+		</form>
+	</div>
+	
+</body>
+</html>
+
+
+

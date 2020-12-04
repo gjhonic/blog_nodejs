@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Главная</title>
+</head>
+<body>
+  <div class="header">
+    <h1>Мои посты</h1>
+    <a class="btn btn-primary btn" href="/me" role="button">На главную</a>
+    <a class="btn btn-success btn" href="/posts" role="button">Все посты</a>
+  </div>
+
+  	<% if(posts.length == 0){ %>
+    <p>  Ой а у вас нет статей! </p>
+    <% }else{ %>
+      <div class="box-posts">
+
+    <%  for(var i=0; i<posts.length; i++ ) { %>
+        <div class="jumbotron">
+            <h1 class="display-4"><%= posts[i].title %></h1>
+            <p class="lead"><%= posts[i].text_short %></p>
+            <hr class="my-4">
+            <p>Дата публикации: <%= posts[i].date %></p>
+            <p class="lead">
+              <a class="btn btn-outline-info btn-lg" href="/post?id=<%=posts[i].id%>" role="button">Подробнее</a>
+            </p>
+        </div>
+  	<% } %>
+
+    </div>
+  <% } %>
+
+</body>
+</html>

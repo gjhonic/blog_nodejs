@@ -1,0 +1,90 @@
+//Отображение страницы enter
+app.get('/enter', function (req, res) {
+  res.render('enter');
+});
+// POST /login gets urlencoded bodies
+app.post('/enter', urlencodedParser, function (req, res) {
+  if(!req.body) return res.sendStatus(400)
+
+  var query = "SELECT * FROM users WHERE login='"+req.body.login+"' ";
+  //console.log(query);
+  
+  connection.query(query, function (error, results, fields) {
+    if (error) throw error;
+    console.log(results);
+  if(results!=null){
+    if(results[0].password == req.body.pass){
+      var description = results[0].description;
+      
+      res.render('me', {name: description});
+    }else
+      console.log("Ошибка входа");
+      
+      res.render('enter');
+  }
+
+  }
+});
+
+
+//Отображение страницы register
+app.get('/register', function (req, res) {
+  res.render('register');
+});
+// POST /login gets urlencoded bodies
+app.post('/register', urlencodedParser, function (req, res) {
+
+    if(!req.body) return res.sendStatus(400)
+    console.log(req.body);
+  var query = "INSERT INTO users VALUES(null, '"+req.body.login+"', '"+req.body.pass+"', '"+req.body.des+"')";
+  
+  //console.log(query);
+  connection.query(query, function (error, results, fields) {
+    if (error) throw error;
+  });
+
+  
+  res.render('enter');
+  
+});
+
+
+//Отображение страницы posts
+app.get('/posts', function (req, res) {
+  var query="SELECT * FROM posts";
+  connection.query(query, function (error, results, fields) {
+    if (error) throw error;
+    console.log(results);
+    res.render('posts',{posts: results});
+  });
+  
+});
+// POST /login gets urlencoded bodies
+app.post('/posts', urlencodedParser, function (req, res) {
+
+    if(!req.body) return res.sendStatus(400)
+    console.log(req.body);
+  var query = "INSERT INTO posts VALUES(null, '"+req.body.topic+"', '"+req.body.description+"')";
+  
+  //console.log(query);
+  connection.query(query, function (error, results, fields) {
+    if (error) throw error;
+  });
+
+  
+  res.render('enter');
+  
+});
+
+
+
+//Отображение страницы about
+app.get('/about', function (req, res) {
+  res.render('about');
+});
+// POST /login gets urlencoded bodies
+app.post('/about', urlencodedParser, function (req, res) {
+  if(!req.body) return res.sendStatus(400)
+  console.log(req.body);
+  res.render('about');
+});

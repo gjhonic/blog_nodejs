@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<title>Вход</title>
+</head>
+<body>
+	<h1 align="center">Вход</h1>
+	<div style='margin: 20px 20%;'>
+		<form method="POST" action="/signin">
+			<div class="form-group">
+				<label for="exampleInputUsername">Логин</label>
+				<input type="text" class="form-control" id="exampleInputUsername"  placeholder="Username" name='username'>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Пароль</label>
+				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name='password'>
+			</div>
+			<input type="submit" class="btn btn-primary btn-block" value="Войти">
+			<h1 align="center"><a class="btn btn-outline-info btn-sm" href="/register" role="button">Нет аккаунта?</a></h1>
+		</form>
+	</div>
+
+</body>
+</html>
