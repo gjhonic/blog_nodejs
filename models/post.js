@@ -21,6 +21,18 @@ class Post {
     return true;
   }
 
+  //Метод обновляет статью в базе данных
+  update(){
+    let now = MyLib.NowDate();
+    let query = "UPDATE post SET title='"+this.title+"', text_short='"+this.text_short+"', text_full='"+this.text_full+"' WHERE id="+this.id;
+
+    db.query(query, function (error, results, fields) {
+      if (error) throw error;
+    });
+    console.log("["+now+"] Статья: "+this.title+". Успешно изменена!");
+    return true;
+  }
+
   //Метод возвращает все статьи
   static findAll(callback){
       let query = "SELECT post.id as id, post.title as title, post.text_short as text_short, post.date as date, user.id as user_id, user.name as author_name, user.surname as author_surname  FROM post  LEFT JOIN user ON post.user_id = user.id ORDER BY id DESC";
@@ -32,7 +44,7 @@ class Post {
 
   //Метод возвращает статью
   static find(post_id, callback){
-    let query = "SELECT post.id as id, post.title as title, post.text_full as text_full, post.date as date, user.id as user_id, user.name as author_name, user.surname as author_surname  FROM post LEFT JOIN user ON post.user_id = user.id WHERE post.id="+post_id;
+    let query = "SELECT post.id as id, post.text_short as text_short, post.title as title, post.text_full as text_full, post.date as date, user.id as user_id, user.name as author_name, user.surname as author_surname  FROM post LEFT JOIN user ON post.user_id = user.id WHERE post.id="+post_id;
     db.query(query, function (error, results, fields) {
         if (error) throw error;
         callback(results[0])
@@ -47,7 +59,6 @@ class Post {
         callback(results)
       });
   }
-
 }
 
 module.exports = Post;

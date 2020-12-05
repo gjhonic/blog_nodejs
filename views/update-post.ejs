@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<title>Изменение статьи №<%= post.id%></title>
+</head>
+<body>
+	<div style='margin: 20px 20px;'>
+		<h1>Изменение статьи №<%= post.id%></h1>
+		<form method="post" action="/update-post">
+      <input type="text" name="post_id" value="<%= post.id%>" hidden>
+				<div class="form-group">
+					<label for="exampleFormControlInput1">Название</label>
+					<input type="text" class="form-control" id="exampleFormControlInput1" name="title" required value="<%= post.title%>">
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlSelect2">Текст анонса</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="short_text" required><%= post.text_short%></textarea>
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlSelect2">Текст статьи</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="full_text" required><%= post.text_full%></textarea>
+				</div>
+				<button type="submit" class="btn btn-success">Изменить</button>
+			</form>
+		<br>
+		<a href="/me" class='btn btn-info'>Назад</a>
+		</div>
+
+	</body>
+	</html>

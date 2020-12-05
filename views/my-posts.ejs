@@ -24,9 +24,14 @@
             <h1 class="display-4"><%= posts[i].title %></h1>
             <p class="lead"><%= posts[i].text_short %></p>
             <hr class="my-4">
-            <p>Дата публикации: <%= posts[i].date %></p>
+            <p>Дата публикации: <%= posts[i].date %>
+							<% if(posts[i].user_id == user.id){  %>
+								<a class="btn btn-light" href="/update-post?id=<%=posts[i].id%>" role="button">Редактировать</a>
+							<% } %>
+						</p>
             <p class="lead">
               <a class="btn btn-outline-info btn-lg" href="/post?id=<%=posts[i].id%>" role="button">Подробнее</a>
+
             </p>
         </div>
   	<% } %>

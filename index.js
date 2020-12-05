@@ -140,7 +140,7 @@ app.get('/my-posts', function (req, res) {
     res.redirect("/signin");
   }
   let posts = Post.findAllUser(myapp.user.id, function(results){
-    res.render('my-posts', {posts: results});
+    res.render('my-posts', {posts: results, user: myapp.user});
   });
 });
 
@@ -150,7 +150,7 @@ app.get('/posts', function (req, res) {
     res.redirect("/signin");
   }
   let posts = Post.findAll(function(results){
-    res.render('posts', {posts: results});
+    res.render('posts', {posts: results, user: myapp.user});
   });
 });
 
@@ -168,6 +168,54 @@ app.get('/post', function (req, res) {
   });
 });
 
+//Форма изменения поста
+app.get('/update-post', function (req, res) {
+  let now = MyLib.NowDate();
+  if(myapp.user == null){
+    res.redirect("/signin");
+  }
+  let post_id = req.query.id;
+  if(post_id==null){
+    res.redirect("/posts");
+  }
+  let post = Post.find(post_id, function(results){
+    if(results.user_id == myapp.user.id){
+      res.render('update-post', {post: results});
+    }else{
+      console.log("["+now+"] Пользователь: "+myapp.user.username+". Хотел изменить не свою статью!");
+    }
+  });
+});
+// Метод сохранения изменения
+app.post('/update-post', urlencodedParser, function (req, res) {
+  let now = MyLib.NowDate();
+  if(myapp.user == null){
+    res.redirect("/signin");
+  }
+
+  if(!req.body) return res.sendStatus(400)
+
+  Post.find(req.body.post_id, function(results){
+    if(results.user_id == myapp.user.id){
+      post = new Post();
+      post.id = results.id;
+      post.title = req.body.title;
+      post.user_id = results.user_id;
+      post.text_short = req.body.short_text;
+      post.text_full = req.body.full_text;
+      post.date = results.date;
+      if(post.update()){
+        res.redirect('/post?id='+post.id);
+      }else{
+        console.log("["+now+"] Ошибка изменения поста!");
+        res.render('/update-post', {notice: 'Ошибка изменения поста!'});
+      }
+    }else{
+      console.log("["+now+"] Пользователь: "+myapp.user.username+". Хотел изменить не свою статью!");
+    }
+  });
+
+});
 
 app.listen(3002);
 console.log("Server Active ...");
