@@ -1,12 +1,14 @@
 //Подключение к БД >>
 const mysql = require("mysql2");
+let config = require('./../config.json');
   
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "blog",
-  password: ""
+  host: config.host,
+  user: config.user,
+  database: config.database,
+  password: config.password
 });
+
  connection.connect(function(err){
     if (err) {
       return console.error("Ошибка: " + err.message);

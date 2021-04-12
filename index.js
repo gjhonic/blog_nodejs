@@ -219,7 +219,3 @@ app.post('/update-post', urlencodedParser, function (req, res) {
 
 app.listen(3002);
 console.log("Server Active ...");
-
-//Save в post
-//В аpp хранить user
-//Текущая Дата в js https://learn.javascript.ru/datetime
